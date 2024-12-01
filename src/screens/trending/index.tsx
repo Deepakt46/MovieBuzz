@@ -12,11 +12,12 @@ import { Text } from '@react-navigation/elements';
 import Icon from '../../common/Icon';
 
 const Filter = React.memo(({selectedLanguages, toggleLanguage}: {selectedLanguages: string[]; toggleLanguage: (language: string) => void}) => {
-  const languages = ['en', 'hi', 'ml'];
+  const languages = ['en', 'fr', 'te', 'ja'];
   const displayName = {
     'en': 'English',
-    'hi': 'Hindi',
-    'ml': 'Malayalam',
+    'fr': 'French',
+    'te': 'Telugu',
+    'ja': 'Japanese',
   };
   return (
     <View
