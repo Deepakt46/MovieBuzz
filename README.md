@@ -38,7 +38,7 @@ Ensure the following are set up:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Deepakt46/moviebuzz.git
+   https://github.com/Deepakt46/MovieBuzz.git
    cd moviebuzz
    ```
 
