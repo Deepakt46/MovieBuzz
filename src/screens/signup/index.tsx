@@ -33,6 +33,7 @@
         setLoading(true);
         const user = await registerWithEmail(data.email, data.password); // Register User with email and password in Firebase
         await user.updateProfile({displayName: data.fullName});
+        await user.sendEmailVerification();
         notifiSuccess('Sign Up Success!', `Welcome ${data.fullName}`); // Show success message using toast, which is setup as a HOC
         setLoading(false);
       } catch (error) {

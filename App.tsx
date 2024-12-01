@@ -22,7 +22,7 @@ const App = () => {
 
   React.useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged(user => {
-      setIsAuthenticated(!!user); 
+      setIsAuthenticated(!!user);
       if (initializing) {
         setTimeout(() => {
           setInitializing(false);

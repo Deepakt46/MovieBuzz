@@ -4,7 +4,7 @@ import { View, Text, TextInput, TouchableOpacity, ImageBackground, ActivityIndic
 import { useForm, Controller, FieldValues } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 import useStyles from './style';
-import { notifiError, notifiSuccess } from '../../services/toast';
+import { notifiError, notifiSuccess, notifiWarning } from '../../services/toast';
 import { loginWithEmail } from '../../services/authentication';
 
 
@@ -16,8 +16,14 @@ const Login = () => {
     try {
       setLoading(true);
       const user = await loginWithEmail(username, password); // Login User with email and password in Firebase
+
       setLoading(false);
       notifiSuccess('Login Success!', `Welcome ${user.email}`);
+      if (!user.emailVerified) {
+        setTimeout(() => {
+        notifiWarning('Your email is not verified', 'Please Check your inbox or spam folder.');
+        }, 2000);
+      }
     } catch (error: Error | any) {
       notifiError('Invalid email or password'); // Show error message, if invalid credentials entered
       setLoading(false);

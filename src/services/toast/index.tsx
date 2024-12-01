@@ -37,6 +37,14 @@ const notifiSuccess = (title: string, subtitle?: string) =>
     topOffset: 60,
   });
 
+  const notifiWarning = (title: string, subtitle?: string) =>
+    Toast.show({
+      type: 'info',
+      text1: title,
+      text2: subtitle,
+      topOffset: 60,
+    });
+
 const withToast = (Component: React.ComponentType) => () =>
   (
     <>
@@ -45,4 +53,4 @@ const withToast = (Component: React.ComponentType) => () =>
     </>
   );
 
-export {withToast, notifiError, notifiSuccess};
+export {withToast, notifiError, notifiSuccess, notifiWarning};
