@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "794686688467",
+    "project_id": "moviebuzz-b16c2",
+    "storage_bucket": "moviebuzz-b16c2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794686688467:android:afb24decaa18f059cfd826",
+        "android_client_info": {
+          "package_name": "com.moviebuzz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUNKE2-EM80XMlgQIL5nXntHPr6BQyPig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
