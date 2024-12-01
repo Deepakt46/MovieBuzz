@@ -102,6 +102,9 @@ npm run ios
   - Displayed only the first time the app is opened after installation.
   - Introduces the app's key features and functionalities.
 
+## Search Movies
+  - This enables search functionality (Backend search implemented), User will able to find their movies  
+
 ---
 
 ## TMDb API Endpoints
@@ -120,6 +123,8 @@ npm run ios
 3. **Drawer Navigation**: Simplify access to logout and other features.
 4. **Responsive Design**: A consistent experience across Android and iOS devices.
 5. **GetStarted Screen**: Welcomes users with an introduction on their first launch.
+6. **Filter Movies**: User can filter movies based on languages in trending movies screen and upcoming (FrontEnd side)
+7. **Search Movies**: User can search and find which ever movie they want
 
 ---
 
@@ -132,6 +137,7 @@ If you face issues during setup or while running the app, refer to the official 
 ## Learn More
 
 To learn more about React Native, take a look at the following resources:
+
 
 - [React Native Documentation](https://reactnative.dev)
 - [TMDb API Documentation](https://developers.themoviedb.org/3/getting-started/introduction)
