@@ -22,6 +22,7 @@ const initialState: MoviesState = {
   page: 1,
 };
 
+// createAsyncThunk use to fetch data, which automatically handles pending, fulfilled, and rejected states
 export const searchMovies = createAsyncThunk(
   'movies/searchMovies',
   async (param: SearchParams) => {
@@ -38,6 +39,7 @@ const moviesSlice = createSlice({
       state.movies = [];
     },
   },
+  // The `extraReducers` field lets the slice handle actions defined elsewhere,
   extraReducers: builder => {
     builder
       .addCase(searchMovies.pending, state => {

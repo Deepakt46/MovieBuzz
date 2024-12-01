@@ -19,7 +19,7 @@ const initialState: MoviesState = {
 interface MovieResponse {
   results: Movie[];
 }
-
+// createAsyncThunk use to fetch data, which automatically handles pending, fulfilled, and rejected states
 export const fetchTrendingMovies = createAsyncThunk(
   'movies/fetchTrendingMovies',
   async (page: number) => {

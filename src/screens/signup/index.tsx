@@ -6,16 +6,16 @@
   import { yupResolver } from '@hookform/resolvers/yup';
   import useStyles from './style';
   import { registerWithEmail } from '../../services/authentication';
-import { notifiError, notifiSuccess } from '../../services/toast';
+  import { notifiError, notifiSuccess } from '../../services/toast';
 
-  // Define Yup validation schema
+  // Yup validation schema - Name, Email, Password, Confirm Password
   const validationSchema = Yup.object().shape({
     fullName: Yup.string().required('Full Name is required'),
     email: Yup.string()
       .email('Invalid email address')
       .required('Email Address is required'),
     password: Yup.string()
-      .min(6, 'Password must be at least 6 characters')
+      .min(8, 'Password must be at least 6 characters')
       .required('Password is required'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password')], 'Passwords must match')
@@ -31,9 +31,9 @@ import { notifiError, notifiSuccess } from '../../services/toast';
     const onSubmit = async(data: FieldValues) => {
       try {
         setLoading(true);
-        const user = await registerWithEmail(data.email, data.password);
+        const user = await registerWithEmail(data.email, data.password); // Register User with email and password in Firebase
         await user.updateProfile({displayName: data.fullName});
-        notifiSuccess('Sign Up Success!', `Welcome ${data.fullName}`);
+        notifiSuccess('Sign Up Success!', `Welcome ${data.fullName}`); // Show success message using toast, which is setup as a HOC
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -50,7 +50,7 @@ import { notifiError, notifiSuccess } from '../../services/toast';
           <Text style={styles.title}>Create new account</Text>
           <Text style={styles.subtitle}>Please fill in the form to continue</Text>
 
-          {/* Full Name Input */}
+          {/*Name Input Section, Used React Hook Form */}
           <Controller
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
@@ -124,8 +124,8 @@ import { notifiError, notifiSuccess } from '../../services/toast';
         </View>
 
         <View>
-          {/* Sign Up Button */}
-          <TouchableOpacity style={styles.signUpButton} onPress={handleSubmit(onSubmit)}>
+          {/* Sign Up Button, which is disabled if loading */}
+          <TouchableOpacity style={styles.signUpButton} onPress={handleSubmit(onSubmit)} disabled={loading}>
            {loading ? <ActivityIndicator size="small" color="#fff" /> : <Text style={styles.signUpButtonText}>Sign Up</Text>}
           </TouchableOpacity>
 

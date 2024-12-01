@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   skeleton: {
-    backgroundColor: '#e0e0e0',
+    backgroundColor: 'gray',
+    opacity: 0.5,
     borderRadius: 5,
     overflow: 'hidden',
     position: 'relative',

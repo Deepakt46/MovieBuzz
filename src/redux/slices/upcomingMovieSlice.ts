@@ -14,6 +14,7 @@ const initialState: MoviesState = {
   error: null,
 };
 
+// createAsyncThunk use to fetch data, which automatically handles pending, fulfilled, and rejected states
 export const fetchMovies = createAsyncThunk<
   Movie[],
   void,

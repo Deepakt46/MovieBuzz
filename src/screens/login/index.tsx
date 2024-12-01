@@ -15,11 +15,11 @@ const Login = () => {
     const { username, password } = data as { username: string; password: string };
     try {
       setLoading(true);
-      const user = await loginWithEmail(username, password);
+      const user = await loginWithEmail(username, password); // Login User with email and password in Firebase
       setLoading(false);
       notifiSuccess('Login Success!', `Welcome ${user.email}`);
     } catch (error: Error | any) {
-      notifiError('Invalid email or password');
+      notifiError('Invalid email or password'); // Show error message, if invalid credentials entered
       setLoading(false);
     }
   };

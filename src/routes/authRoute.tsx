@@ -24,7 +24,7 @@ const Header = ({ navigation }: { navigation: any }) => {
         <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
           <Icon name="align-left" size={20} color="#fff" />
         </TouchableOpacity>
-        <Text style={styles.headerText}>Hello, {user?.displayName || 'Guest'}</Text>
+        <Text style={styles.headerText}>Hello, <Text style={{color: "#fff"}}>{user?.displayName || 'Guest'} </Text></Text>
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('search')}>
         <Icon name="search" size={20} color="#fff" />

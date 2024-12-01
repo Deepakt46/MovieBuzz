@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {View, FlatList, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -11,13 +11,7 @@ import {fetchTrendingMovies} from '../../redux/slices/trendingMovieSlice';
 import { Text } from '@react-navigation/elements';
 import Icon from '../../common/Icon';
 
-const Filter = ({
-  selectedLanguages,
-  toggleLanguage,
-}: {
-  selectedLanguages: string[];
-  toggleLanguage: (language: string) => void;
-}) => {
+const Filter = React.memo(({selectedLanguages, toggleLanguage}: {selectedLanguages: string[]; toggleLanguage: (language: string) => void}) => {
   const languages = ['en', 'hi', 'ml'];
   const displayName = {
     'en': 'English',
@@ -57,7 +51,7 @@ const Filter = ({
       ))}
     </View>
   );
-};
+});
 
 const Trending = () => {
   const styles = useStyles();
@@ -66,29 +60,28 @@ const Trending = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
 
-
   const {movies, status, page} = useSelector(
     (state: RootState) => state.trendingMovie,
   );
   const [filteredMovies, setFilteredMovies] = useState(movies);
 
-  const onEndReached = () => {
+  const onEndReached = useCallback(() => {
     if (!loading && status !== 'loading' && page <= 5) {
       setLoading(true);
       dispatch(fetchTrendingMovies(page) as any).finally(
         () => setLoading(false)
       );
     }
-  };
-  const toggleLanguage = (language: string) => {
+  }, [loading, status, page, dispatch]);
+
+  const toggleLanguage = useCallback((language: string) => {
     setSelectedLanguages(prev =>
       prev.includes(language)
         ? prev.filter(lang => lang !== language)
         : [...prev, language]
     );
-  };
+  }, []);
 
-  // Filter movies whenever the selected languages or movies change
   useEffect(() => {
     if (selectedLanguages.length === 0) {
       setFilteredMovies(movies); // Show all movies if no filter is selected
@@ -103,8 +96,7 @@ const Trending = () => {
     <View style={styles.container}>
         <FlatList
           data={filteredMovies}
-          // keyExtractor={item => item.id.toString()}
-          keyExtractor={(item, index) => `${item.id}-${index}`}
+          keyExtractor={(item, index) => `${item.id}-${index}`} // Unique key for each item
           showsVerticalScrollIndicator={false}
           numColumns={2}
           stickyHeaderIndices={[0]} // Make the filter sticky
@@ -122,7 +114,6 @@ const Trending = () => {
             <Text style={styles.emptyText}>No movies found</Text>
           )}
           ListFooterComponent={
-            // Show a loading indicator at the end of the list
             <LoadingFooter loading={loading} />
           }
         />

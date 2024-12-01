@@ -37,15 +37,15 @@ const useStyles = () => {
     upcomingMovieTxt: {
       fontFamily: FontFamily.BOLD,
       textAlign: 'left',
-      marginBottom: 10,
-      fontSize: 16,
+      marginBottom: 20,
+      fontSize: 18,
       color: Colors.text,
     },
     movieCardHeaderText: {
       fontFamily: FontFamily.BOLD,
       textAlign: 'left',
       marginBottom: 10,
-      fontSize: 16,
+      fontSize: 18,
       color: Colors.text,
     },
     emptyComponent: {

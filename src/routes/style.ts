@@ -14,7 +14,7 @@ const useStyles = () => {
     headerText: {
       fontSize: 20,
       fontFamily: FontFamily.BOLD,
-      color: Colors.text,
+      color: '#FBCE04',
       marginLeft: 10,
     },
     searchIcon: {

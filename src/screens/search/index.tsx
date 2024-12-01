@@ -50,7 +50,7 @@ const Search = () => {
             navigation.pop();
             dispatch(emptySearch());
           }}>
-          <Icon name="arrow-left" size={20} color="#fff" />
+          <Icon name="arrow-left" size={28} color="#fff" />
         </TouchableOpacity>
         <TextInput
           style={styles.searchBox}

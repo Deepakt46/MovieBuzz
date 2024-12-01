@@ -28,7 +28,7 @@ const UpcomingMovieComponent = ({
   return (
     <View style={styles.upcomingMovies}>
       {loading ? (
-        <MovieCardSkeleton />
+        <MovieCardSkeleton /> // Render skeleton when loading
       ) : movies.length > 0 ? (
         <>
 
@@ -80,7 +80,7 @@ const Home = () => {
   const [loadingTrendingMovie, setLoadingTrendingMovie] =
     useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
-  const {movies, status} = useSelector((state: RootState) => state.movies);
+  const {movies, status} = useSelector((state: RootState) => state.movies); // upcoming movies
   const {
     movies: trendingMovies,
     status: trendingStatus,
@@ -91,7 +91,7 @@ const Home = () => {
   useEffect(() => {
     if (status === 'idle') {
       setLoadingUpcomingMovie(true);
-      dispatch(fetchMovies() as unknown as UnknownAction);
+      dispatch(fetchMovies() as unknown as UnknownAction); // Dispatch the fetchMovies action created by createAsyncThunk
     } else if (status === 'succeeded') {
       setLoadingUpcomingMovie(false);
     }
@@ -99,7 +99,7 @@ const Home = () => {
     // Assuming you want to fetch trending movies as well
     if (trendingStatus === 'idle') {
       setLoadingTrendingMovie(true);
-      dispatch(fetchTrendingMovies(page) as unknown as UnknownAction);
+      dispatch(fetchTrendingMovies(page) as unknown as UnknownAction); // Dispatch the fetchTrendingMovies action created by createAsyncThunk
     } else if (trendingStatus === 'succeeded') {
       setLoadingTrendingMovie(false);
     }
@@ -107,9 +107,9 @@ const Home = () => {
 
   const onEndReached = () => {
     //limiting scroll to 4 pages
-    if (page <= 4 && trendingStatus !== 'loading') {
+    if (page <= 6 && trendingStatus !== 'loading') {
       setLoading(true);
-      dispatch(fetchTrendingMovies(page) as unknown as UnknownAction);
+      dispatch(fetchTrendingMovies(page) as unknown as UnknownAction); // Pagination
     } else {
       setLoading(false);
     }

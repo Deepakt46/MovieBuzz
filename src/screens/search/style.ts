@@ -16,7 +16,7 @@ const useStyles = () => {
     },
     searchBox: {
       borderWidth: 1,
-      borderColor: '#ccc',
+      borderColor: '#FBCE04',
       paddingHorizontal: 10,
       flex: 1,
       height: 40,
