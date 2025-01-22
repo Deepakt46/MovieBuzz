@@ -48,7 +48,6 @@ workflows:
     publishing:
       email:
         recipients:
-          - deepak.t@hubspire.com
           - lijin.p@hubspire.com
       scripts:
         - name: Share build link
