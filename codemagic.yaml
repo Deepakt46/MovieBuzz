@@ -20,8 +20,8 @@ workflows:
           cd android
           ./gradlew assembleRelease --stacktrace --info
 
-    artifacts:
-      - android/app/build/outputs/apk/debug/app-debug.apk
+artifacts:
+  - android/app/build/outputs/apk/release/app-release.apk
 
     publishing:
       email:
