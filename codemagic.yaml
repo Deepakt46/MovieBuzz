@@ -13,13 +13,7 @@ workflows:
       - name: Install dependencies
         script: |
           npm install
-          npm install -g react-native-cli
-
-      - name: Clean project
-        script: |
-          cd android
-          ./gradlew clean
-
+       
       - name: Build Debug APK
         script: |
           cd android
