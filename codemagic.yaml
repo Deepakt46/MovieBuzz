@@ -2,7 +2,6 @@ workflows:
   react-native-android:
     # ....
     environment:
-      groups:
-        # ...
+    
       vars:
         PACKAGE_NAME: "com.moviebuzz"
