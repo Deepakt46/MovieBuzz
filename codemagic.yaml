@@ -1,7 +1,42 @@
 workflows:
   react-native-android:
-    # ....
+    name: React Native Android Build
+    max_build_duration: 120  # Set max duration to 2 hours
     environment:
-    
+      flutter: stable
       vars:
         PACKAGE_NAME: "com.moviebuzz"
+      node: 16  # Set Node.js version
+      java: 17  # Set Java version
+      android_signing:
+        - keystore_reference
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install
+          npm install -g react-native-cli
+
+      - name: Clean project
+        script: |
+          cd android
+          ./gradlew clean
+
+      - name: Build APK
+        script: |
+          cd android
+          ./gradlew assembleRelease
+
+     
+
+    artifacts:
+      - android/app/build/outputs/apk/release/app-release.apk
+
+    publishing:
+      email:
+        recipients:
+          - deepak.t@hubspire.com
+          - lijin.p@hubspire.com
+      scripts:
+        - name: Share build link
+          script: |
+            echo "Build available at: $CM_PUBLIC_LINK"
