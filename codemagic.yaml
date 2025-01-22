@@ -6,14 +6,22 @@ workflows:
       flutter: stable
       vars:
         PACKAGE_NAME: "com.moviebuzz"
-      node: 16  # Set Node.js version
-      java: 17  # Set Java version
+      node: 16  # Use Node.js 16 (adjust if needed)
+      java: 17  # Java 17 for Gradle compatibility
+      cache:
+        cache_paths:
+          - ~/.gradle
+          - ~/.m2
+          - node_modules
+          - android/.gradle
+          - android/app/build
 
     scripts:
       - name: Install dependencies
         script: |
+          rm -rf node_modules
           npm install
-          npm install -g react-native-cli
+          npx pod-install  # For iOS, no effect on Android but ensures consistency
 
       - name: Verify dependencies
         script: |
@@ -23,6 +31,11 @@ workflows:
         script: |
           cd android
           ./gradlew clean
+
+      - name: Reinstall Gradle Dependencies
+        script: |
+          cd android
+          ./gradlew --refresh-dependencies
 
       - name: Build Debug APK
         script: |
@@ -35,7 +48,7 @@ workflows:
     publishing:
       email:
         recipients:
-            - deepak.t@hubspire.com
+                     - deepak.t@hubspire.com
             - lijin.p@hubspire.com
       scripts:
         - name: Share build link
