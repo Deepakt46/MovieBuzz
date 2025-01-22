@@ -8,13 +8,14 @@ workflows:
         PACKAGE_NAME: "com.moviebuzz"
       node: 16  # Use Node.js 16 (adjust if needed)
       java: 17  # Java 17 for Gradle compatibility
-      cache:
-        cache_paths:
-          - ~/.gradle
-          - ~/.m2
-          - node_modules
-          - android/.gradle
-          - android/app/build
+
+    cache:
+      cache_paths:
+        - ~/.gradle
+        - ~/.m2
+        - node_modules
+        - android/.gradle
+        - android/app/build
 
     scripts:
       - name: Install dependencies
