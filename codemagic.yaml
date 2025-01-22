@@ -1,15 +1,14 @@
 workflows:
-  react-native-android:
-    name: React Native Android Build
-    max_build_duration: 120  # Set max duration to 2 hours
+  react-native-android-debug:
+    name: React Native Android Debug Build
+    max_build_duration: 60  # Set max duration to 1 hour
     environment:
       flutter: stable
       vars:
         PACKAGE_NAME: "com.moviebuzz"
       node: 16  # Set Node.js version
       java: 17  # Set Java version
-      android_signing:
-        - keystore_reference
+
     scripts:
       - name: Install dependencies
         script: |
@@ -21,15 +20,13 @@ workflows:
           cd android
           ./gradlew clean
 
-      - name: Build APK
+      - name: Build Debug APK
         script: |
           cd android
-          ./gradlew assembleRelease
-
-     
+          ./gradlew assembleDebug
 
     artifacts:
-      - android/app/build/outputs/apk/release/app-release.apk
+      - android/app/build/outputs/apk/debug/app-debug.apk
 
     publishing:
       email:
