@@ -18,7 +18,7 @@ workflows:
       - name: Build Android Debug APK
         script: |
           cd android
-          ./gradlew assembleDebug --stacktrace --info
+          ./gradlew assembleRelease --stacktrace --info
 
     artifacts:
       - android/app/build/outputs/apk/debug/app-debug.apk
@@ -27,6 +27,7 @@ workflows:
       email:
         recipients:
           - lijin.p@hubspire.com
+          - deepak.t@hubspire.com
       scripts:
         - name: Share build link
           script: |
