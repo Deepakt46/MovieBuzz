@@ -5,4 +5,4 @@ workflows:
       groups:
         # ...
       vars:
-        PACKAGE_NAME: "io.codemagic.sample.reactnative"
+        PACKAGE_NAME: "com.moviebuzz"
