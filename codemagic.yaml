@@ -13,13 +13,21 @@ workflows:
       - name: Install dependencies
         script: |
           npm install
-           npm install -g react-native-cli
+          npm install -g react-native-cli
 
-       
+      - name: Verify dependencies
+        script: |
+          ls -la node_modules/@react-native/gradle-plugin || echo "Gradle plugin missing!"
+
+      - name: Clean project
+        script: |
+          cd android
+          ./gradlew clean
+
       - name: Build Debug APK
         script: |
           cd android
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --stacktrace --info
 
     artifacts:
       - android/app/build/outputs/apk/debug/app-debug.apk
@@ -27,8 +35,8 @@ workflows:
     publishing:
       email:
         recipients:
-          - deepak.t@hubspire.com
-          - lijin.p@hubspire.com
+            - deepak.t@hubspire.com
+            - lijin.p@hubspire.com
       scripts:
         - name: Share build link
           script: |
